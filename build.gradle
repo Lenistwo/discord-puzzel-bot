@@ -1,0 +1,57 @@
+//file:noinspection GroovyAssignabilityCheck
+plugins {
+    id 'org.springframework.boot' version '2.5.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'pl.lenistwo'
+version = '1.0.0'
+sourceCompatibility = '17'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name 'm2-dv8tion'
+        url 'https://m2.dv8tion.net/releases'
+    }
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    implementation 'com.squareup.moshi:moshi:1.13.0'
+    implementation "dev.zacsweers.moshix:moshi-records-reflect:0.14.1"
+    implementation 'ch.qos.logback:logback-core:1.2.10'
+    implementation 'ch.qos.logback:logback-classic:1.2.10'
+    implementation 'org.slf4j:slf4j-api:1.7.33'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    implementation 'org.springframework.boot:spring-boot-starter-cache:2.6.3'
+    implementation 'org.springframework.boot:spring-boot-starter-logging:2.6.3'
+    implementation 'com.github.ben-manes.caffeine:caffeine:3.0.5'
+    implementation 'net.dv8tion:JDA:4.3.0_277'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:2.6.3'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+bootJar {
+    classifier 'boot'
+}
+
+jar {
+    enabled = true
+    manifest {
+        attributes(
+                'Main-Class': 'pl.lenistwo.puzzlebot.PuzzleBotApplication'
+        )
+    }
+}
